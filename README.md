@@ -16,13 +16,13 @@ The Medallion Architecture guides the data transformation, where the raw data fl
 
 ## **Project Overview**
 
-This project implements a robust data pipeline for car sales data using the Medallion framework. By leveraging Azure tools, the pipeline is designed to handle large-scale data processing and provide structured insights at the end.
+This project implements a robust data pipeline for Heathcare Revenue Cycle data using the Medallion framework. By leveraging Azure tools, the pipeline is designed to handle large-scale data processing and provide structured insights at the end.
 
 ### **Key Features**
 
 - **Three-Tier Architecture:** Data is processed and stored in separate stages (Bronze, Siver, Gold) for easy management and optimization.
 - **Automated Pipeline:** Azure Data Factory orchestrates the entire pipeline, moving and transforming data automatically.
-- **Incremental Loading:** Data is added incrementally to the Raw layer, ensuring efficient processing.
+- **Incremental Loading:** Data is added incrementally to the Bronze layer, ensuring efficient processing.
 - **Data Cleanup:** Databricks handles data transformations, making the final dataset ready for analytics.
 - **Snowflake Schema & SCD Type-2:** A star schema is used to structure the final dataset, with Slowly Changing Dimension (SCD) Type-2 for updating historical data.
 
@@ -61,13 +61,15 @@ The Gold layer is the final output—cleaned and enriched data that can be used 
 
 This pipeline fetches data from GitHub and loads it into the Azure SQL Database.
 
-![image](https://github.com/user-attachments/assets/69ea4d58-c5d7-4361-b1e1-4b0ed59f07ae)
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/d11a204ec3e4c25be11c225993e083d6497f28e5/Project%20Screenshots/HealthcareRCM_EMR_Source_Prep.png)
 
 ### **Pipeline 2: Incremental Data Loading**
 
-This pipeline ensures that only new data is appended to the Raw layer in Azure Data Lake Gen 2.
+This pipeline ensures that only new data is appended to the Bronze layer in Azure Data Lake Gen 2.
 
-![image](https://github.com/user-attachments/assets/6f1d9cc0-c880-4a67-916f-330e43bda20b)
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/d11a204ec3e4c25be11c225993e083d6497f28e5/Project%20Screenshots/HealthcareRCM_EMR_Dataload1.png)
+
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/d11a204ec3e4c25be11c225993e083d6497f28e5/Project%20Screenshots/HealthcareRCM_EMR_Dataload2.png)
 
 The expression in the pipeline's expression builder dynamically filters data from source_cars_data based on incremental loading. It selects records where Date_ID falls between the last and current load values, ensuring only new data is processed. A screenshot is provided for better clarity.
 
@@ -83,11 +85,6 @@ SQL tables and procedures are created to facilitate data cleaning and transforma
 
 ![image](https://github.com/user-attachments/assets/6154a51b-2b6a-4132-981e-8691dff1c70e)
 
-### **Databricks Workflow: Building the Star Schema**
-
-The raw data is transformed into structured tables with a star schema in Databricks.
-
-![image](https://github.com/user-attachments/assets/d9b4f062-75ae-40f7-b8bc-81d39efdef7d)
 
 ### **Updated Incremental Data Loading Pipeline**
 
@@ -98,7 +95,7 @@ To enhance the efficiency of data transformation, a Databricks notebook has been
 - This approach ensures that both ADF and Databricks function as a single end-to-end pipeline, automating the entire data ingestion and transformation flow.
 - The notebook handles data cleansing, transformation, and structuring, making the final dataset ready for analytical use
 
-![image](https://github.com/user-attachments/assets/fb772b49-3815-429b-aa83-3ba6ba49ab3c)
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/d11a204ec3e4c25be11c225993e083d6497f28e5/Project%20Screenshots/HealthcareRCM_Master%20Pipeline.png)
 
 ### **Azure Resource Group**
 
