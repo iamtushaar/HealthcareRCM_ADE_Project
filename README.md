@@ -1,16 +1,16 @@
 # **Healthcare Revenue Cycle Management (RCM) Azure Data Engineering Project: Medallion Architecture**
 
-This project is a data engineering solution built on Microsoft Azure, focused on processing car sales data using the Medallion Architecture (Raw, Curated, and Refined layers). It automates data workflows to provide scalable and efficient processing from raw data to analytics-ready insights.
+This project is a data engineering solution built on Microsoft Azure, focused on processing Healthcare Revenue Cycle Management (RCM) data using the Medallion Architecture (Bronze, Silver, Gold layers). It automates data workflows to provide scalable and efficient processing from raw data to analytics-ready insights.
 
 ## **System Architecture Overview**
 
 The Medallion Architecture guides the data transformation, where the raw data flows through the following stages:
 
-1. **Raw Layer** - Raw data
-2. **Curated Layer** - Cleaned and enriched data
-3. **Refined Layer** - Analytics-ready data
+1. **Bronze Layer** - Raw data
+2. **Silver Layer** - Cleaned and enriched data
+3. **Gold Layer** - Analytics-ready data
 
-![image](https://github.com/user-attachments/assets/9842d4b4-3ef2-4522-98e4-2e866a467efc)
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/50ddb73fc0196a42e98e2d0d89b25d87917ca7a2/Project%20Screenshots/Architechture%20Dia.png)
 
 ---
 
@@ -20,11 +20,11 @@ This project implements a robust data pipeline for car sales data using the Meda
 
 ### **Key Features**
 
-- **Three-Tier Architecture:** Data is processed and stored in separate stages (Raw, Curated, Refined) for easy management and optimization.
+- **Three-Tier Architecture:** Data is processed and stored in separate stages (Bronze, Siver, Gold) for easy management and optimization.
 - **Automated Pipeline:** Azure Data Factory orchestrates the entire pipeline, moving and transforming data automatically.
 - **Incremental Loading:** Data is added incrementally to the Raw layer, ensuring efficient processing.
 - **Data Cleanup:** Databricks handles data transformations, making the final dataset ready for analytics.
-- **Star Schema & SCD Type-1:** A star schema is used to structure the final dataset, with Slowly Changing Dimension (SCD) Type-1 for updating historical data.
+- **Snowflake Schema & SCD Type-2:** A star schema is used to structure the final dataset, with Slowly Changing Dimension (SCD) Type-2 for updating historical data.
 
 ---
 
@@ -32,8 +32,9 @@ This project implements a robust data pipeline for car sales data using the Meda
 
 - **Azure Data Factory** for orchestrating data movement.
 - **Azure SQL Database** for storing raw data.
-- **Azure Data Lake Gen 2** for tiered storage (Raw, Curated, Refined).
+- **Azure Data Lake Gen 2** for tiered storage (Bronze, Siver, Gold).
 - **Azure Databricks** for data transformation and enrichment.
+- **Azure Key Vault** for storing secrets.
 - **Star Schema & SCD Type-1** for efficient data modeling.
 
 ---
@@ -44,13 +45,13 @@ This project implements a robust data pipeline for car sales data using the Meda
 Data is fetched from an external source (e.g., GitHub) and loaded into Azure SQL Database using Azure Data Factory.
 
 ### **Step 2: Incremental Data Loading**
-New data is loaded incrementally into the Raw layer of Azure Data Lake Gen 2. Azure Data Factory automates this process.
+New data is loaded incrementally into the Bronze layer of Azure Data Lake Gen 2. Azure Data Factory automates this process.
 
 ### **Step 3: Data Transformation**
-Databricks processes the data, cleans it, and applies necessary transformations to build the Curated and Refined layers, structured into a star schema.
+Databricks processes the data, cleans it, and applies necessary transformations to build the Silver and Gold layers.
 
 ### **Step 4: Reporting-Ready Data**
-The Refined layer is the final output—cleaned and enriched data that can be used for business intelligence or reporting.
+The Gold layer is the final output—cleaned and enriched data that can be used for business intelligence or reporting.
 
 ---
 
@@ -103,7 +104,7 @@ To enhance the efficiency of data transformation, a Databricks notebook has been
 
 Overview of the deployed resources within Azure for this project.
 
-![image](https://github.com/user-attachments/assets/9f64d999-b3df-4750-b33a-36cc11195461)
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/50ddb73fc0196a42e98e2d0d89b25d87917ca7a2/Project%20Screenshots/Resources.png)
 
 ---
 
@@ -132,8 +133,8 @@ Follow these steps to deploy and run the project in your Azure environment.
    - Ensure raw data is stored in SQL Database.
    - Verify that data flows correctly through the Bronze, Silver, and Gold layers in Data Lake.
 
-4. **Star Schema Construction:**
-   - Run Databricks jobs to generate the star schema for reporting, implementing SCD Type-1 for historical updates.
+4. **Schema Construction:**
+   - Run Databricks jobs to generate the star schema for reporting, implementing SCD Type-2 for historical updates.
 
 5. **Optional Customizations:**
    - Modify workflows and notebooks as needed, including adding custom monitoring or error handling mechanisms.
