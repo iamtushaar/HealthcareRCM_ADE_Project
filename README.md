@@ -35,7 +35,7 @@ This project implements a robust data pipeline for Heathcare Revenue Cycle data 
 - **Azure Data Lake Gen 2** for tiered storage (Bronze, Siver, Gold).
 - **Azure Databricks** for data transformation and enrichment.
 - **Azure Key Vault** for storing secrets.
-- **Star Schema & SCD Type-1** for efficient data modeling.
+- **Snowflake Schema & SCD Type-2** for efficient data modeling.
 
 ---
 
@@ -55,15 +55,32 @@ The Gold layer is the final output—cleaned and enriched data that can be used 
 
 ---
 
-## **Pipeline Details**
+## **Project Details**
 
-### **Pipeline 1: Data Ingestion**
+### **Azure Resource Group**
 
-This pipeline fetches data from GitHub and loads it into the Azure SQL Database.
+Overview of the deployed resources within Azure for this project.
+
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/50ddb73fc0196a42e98e2d0d89b25d87917ca7a2/Project%20Screenshots/Resources.png)
+
+
+### **Storage Account**
+
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/8bac4e8ff1f013afa7f0e8f2eae5a88e7fae72ec/Project%20Screenshots/StorageAccount.png)
+
+
+### **Linked Services**
+
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/8bac4e8ff1f013afa7f0e8f2eae5a88e7fae72ec/Project%20Screenshots/LinkedServices.png)
+
+
+### **Pipeline 1: HealthcareRCM_EMR_SourcePrep**
+
+This pipeline fetches data from GitHub and loads it into the Azure SQL Databases.
 
 ![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/d11a204ec3e4c25be11c225993e083d6497f28e5/Project%20Screenshots/HealthcareRCM_EMR_Source_Prep.png)
 
-### **Pipeline 2: Incremental Data Loading**
+### **Pipeline 2: HealthcareRCM_EMR_Dataload - Incremental Data Loading**
 
 This pipeline ensures that only new data is appended to the Bronze layer in Azure Data Lake Gen 2.
 
@@ -73,35 +90,41 @@ This pipeline ensures that only new data is appended to the Bronze layer in Azur
 
 The expression in the pipeline's expression builder dynamically filters data from source_cars_data based on incremental loading. It selects records where Date_ID falls between the last and current load values, ensuring only new data is processed. A screenshot is provided for better clarity.
 
-![image](https://github.com/user-attachments/assets/a3338793-d369-416c-9dfe-aa2d8ddc9be9)
-
-The stored procedure uses the below expression to retrieve the maximum date from the current load. This ensures that only new records up to the latest available date are processed in the incremental data pipeline.
-
-![image](https://github.com/user-attachments/assets/fc0ad4df-75b1-478c-bdff-9878b9e2b998)
-
-### **SQL Procedures and Data Transformation**
-
-SQL tables and procedures are created to facilitate data cleaning and transformations.
-
-![image](https://github.com/user-attachments/assets/6154a51b-2b6a-4132-981e-8691dff1c70e)
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/8bac4e8ff1f013afa7f0e8f2eae5a88e7fae72ec/Project%20Screenshots/EMR_Incremental_Data_Ingestion_Logic.png)
 
 
-### **Updated Incremental Data Loading Pipeline**
+### **Pipeline 3: HealthcareRCM_LandingToBronze**
+
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/8bac4e8ff1f013afa7f0e8f2eae5a88e7fae72ec/Project%20Screenshots/HealthcareRCM_LandingToBronze.png)
+
+
+### **Pipeline 4: HealthcareRCM_BronzeToSilver**
+
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/8bac4e8ff1f013afa7f0e8f2eae5a88e7fae72ec/Project%20Screenshots/HealthcareRCM_BronzeToSilver1.png)
+
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/8bac4e8ff1f013afa7f0e8f2eae5a88e7fae72ec/Project%20Screenshots/HealthcareRCM_BronzeToSilver2.png)
+
+
+### **Pipeline 4: HealthcareRCM_SilverToGold**
+
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/8bac4e8ff1f013afa7f0e8f2eae5a88e7fae72ec/Project%20Screenshots/HealthcareRCM_SilverToGold.png)
+
+### **Data Model**
+
+![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/8bac4e8ff1f013afa7f0e8f2eae5a88e7fae72ec/Project%20Screenshots/Data%20Model.png)
+
+
+### **MASTER PIPELINE**
 
 To enhance the efficiency of data transformation, a Databricks notebook has been integrated with the existing Azure Data Factory (ADF) pipeline. This integration allows ADF to orchestrate the entire data processing workflow seamlessly.
 
 - The Databricks notebook is triggered at the end of the incremental loading process in ADF.
-- Once the data is ingested into the Raw layer of Azure Data Lake Gen 2, the Databricks notebook processes and moves it to the Curated and Refined layers.
+- Once the data is ingested into the Bronze layer of Azure Data Lake Gen 2, the Databricks notebook processes and moves it to the Silver and Gold layers.
 - This approach ensures that both ADF and Databricks function as a single end-to-end pipeline, automating the entire data ingestion and transformation flow.
-- The notebook handles data cleansing, transformation, and structuring, making the final dataset ready for analytical use
+- The notebook handles data cleansing, transformation, and structuring, making the final dataset ready for analytical use.
 
 ![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/d11a204ec3e4c25be11c225993e083d6497f28e5/Project%20Screenshots/HealthcareRCM_Master%20Pipeline.png)
 
-### **Azure Resource Group**
-
-Overview of the deployed resources within Azure for this project.
-
-![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/50ddb73fc0196a42e98e2d0d89b25d87917ca7a2/Project%20Screenshots/Resources.png)
 
 ---
 
