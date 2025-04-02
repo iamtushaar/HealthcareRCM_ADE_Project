@@ -43,10 +43,10 @@ This project implements a robust data pipeline for Heathcare Revenue Cycle data 
 
 ### **Step 1: Raw Data Ingestion**
 
--- **EMR Data**: Extracted from an external source (e.g., GitHub) and loaded into Azure SQL Database for Hospital A and Hospital B using Azure Data Factory.
--- **Claims Data**: Pulled from the landing layer to the bronze layer using Azure Databricks Notebooks.
--- **CPT Codes**: Transferred from the landing layer to the bronze layer using Azure Databricks Notebooks.
--- **ICD & NPI Codes**: Retrieved from a public API and ingested into the bronze layer using Azure Databricks Notebooks.
+- **EMR Data**: Extracted from an external source (e.g., GitHub) and loaded into Azure SQL Database for Hospital A and Hospital B using Azure Data Factory.
+- **Claims Data**: Pulled from the landing layer to the bronze layer using Azure Databricks Notebooks.
+- **CPT Codes**: Transferred from the landing layer to the bronze layer using Azure Databricks Notebooks.
+- **ICD & NPI Codes**: Retrieved from a public API and ingested into the bronze layer using Azure Databricks Notebooks.
 
 ### **Step 2: Incremental Data Loading**
 New data is loaded incrementally into the Bronze layer of Azure Data Lake Gen 2. Azure Data Factory automates this process.
