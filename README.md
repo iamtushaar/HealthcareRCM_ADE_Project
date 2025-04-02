@@ -92,7 +92,7 @@ This pipeline ensures that only new data is appended to the Bronze layer in Azur
 
 ![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/d11a204ec3e4c25be11c225993e083d6497f28e5/Project%20Screenshots/HealthcareRCM_EMR_Dataload2.png)
 
-The expression in the pipeline's expression builder dynamically filters data from source_cars_data based on incremental loading. It selects records where Date_ID falls between the last and current load values, ensuring only new data is processed. A screenshot is provided for better clarity.
+Incremental data loading logic.
 
 ![image](https://github.com/iamtushaar/HealthcareRCM_ADE_Project/blob/8bac4e8ff1f013afa7f0e8f2eae5a88e7fae72ec/Project%20Screenshots/EMR_Incremental_Data_Ingestion_Logic.png)
 
