@@ -24,7 +24,7 @@ This project implements a robust data pipeline for Heathcare Revenue Cycle data 
 - **Automated Pipeline:** Azure Data Factory orchestrates the entire pipeline, moving and transforming data automatically.
 - **Incremental Loading:** Data is added incrementally to the Bronze layer, ensuring efficient processing.
 - **Data Cleanup:** Databricks handles data transformations, making the final dataset ready for analytics.
-- **Snowflake Schema & SCD Type-2:** A star schema is used to structure the final dataset, with Slowly Changing Dimension (SCD) Type-2 for updating historical data.
+- **Snowflake Schema & SCD Type-2:** A snowflake schema is used to structure the final dataset, with Slowly Changing Dimension (SCD) Type-2 for updating historical data.
 
 ---
 
