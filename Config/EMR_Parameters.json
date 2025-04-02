@@ -1,0 +1,62 @@
+[
+    {
+        "p_relative_url" : "iamtushaar/HealthcareRCM_ADE_Project/refs/heads/main/Sources/EMR/Hospital%20A/departments.csv",
+        "p_databaseName" : "HospitalA_DB",
+        "p_schemaName" : "dbo",
+        "p_tableName" : "departments"
+    },
+    {
+        "p_relative_url" : "iamtushaar/HealthcareRCM_ADE_Project/refs/heads/main/Sources/EMR/Hospital%20A/encounters.csv",
+        "p_databaseName" : "HospitalA_DB",
+        "p_schemaName" : "dbo",
+        "p_tableName" : "encounters"
+    },
+    {
+        "p_relative_url" : "iamtushaar/HealthcareRCM_ADE_Project/refs/heads/main/Sources/EMR/Hospital%20A/patients.csv",
+        "p_databaseName" : "HospitalA_DB",
+        "p_schemaName" : "dbo",
+        "p_tableName" : "patients"
+    },
+    {
+        "p_relative_url" : "iamtushaar/HealthcareRCM_ADE_Project/refs/heads/main/Sources/EMR/Hospital%20A/providers.csv",
+        "p_databaseName" : "HospitalA_DB",
+        "p_schemaName" : "dbo",
+        "p_tableName" : "providers"
+    },
+    {
+        "p_relative_url" : "iamtushaar/HealthcareRCM_ADE_Project/refs/heads/main/Sources/EMR/Hospital%20A/transactions.csv",
+        "p_databaseName" : "HospitalA_DB",
+        "p_schemaName" : "dbo",
+        "p_tableName" : "transactions"
+    },
+    {
+        "p_relative_url" : "iamtushaar/HealthcareRCM_ADE_Project/refs/heads/main/Sources/EMR/Hospital%20B/departments.csv",
+        "p_databaseName" : "HospitalB_DB",
+        "p_schemaName" : "dbo",
+        "p_tableName" : "departments"
+    },
+    {
+        "p_relative_url" : "iamtushaar/HealthcareRCM_ADE_Project/refs/heads/main/Sources/EMR/Hospital%20B/encounters.csv",
+        "p_databaseName" : "HospitalB_DB",
+        "p_schemaName" : "dbo",
+        "p_tableName" : "encounters"
+    },
+    {
+        "p_relative_url" : "iamtushaar/HealthcareRCM_ADE_Project/refs/heads/main/Sources/EMR/Hospital%20B/patients.csv",
+        "p_databaseName" : "HospitalB_DB",
+        "p_schemaName" : "dbo",
+        "p_tableName" : "patients"
+    },
+    {
+        "p_relative_url" : "iamtushaar/HealthcareRCM_ADE_Project/refs/heads/main/Sources/EMR/Hospital%20B/providers.csv",
+        "p_databaseName" : "HospitalB_DB",
+        "p_schemaName" : "dbo",
+        "p_tableName" : "providers"
+    },
+    {
+        "p_relative_url" : "iamtushaar/HealthcareRCM_ADE_Project/refs/heads/main/Sources/EMR/Hospital%20B/transactions.csv",
+        "p_databaseName" : "HospitalB_DB",
+        "p_schemaName" : "dbo",
+        "p_tableName" : "transactions"
+    }
+]
